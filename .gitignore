@@ -1,0 +1,21 @@
+# Java
+backend/target/
+*.log
+
+# Node / Astro
+frontend/node_modules/
+frontend/dist/
+frontend/.astro/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local env
+.env
+.env.local
