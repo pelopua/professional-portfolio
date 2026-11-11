@@ -2,7 +2,7 @@ export const portfolio = {
   name: 'Fermín Bermejo González',
   initials: 'FB',
   linkedinUrl: 'https://www.linkedin.com/in/ferm%C3%ADn-bermejo-gonz%C3%A1lez-a4891a66',
-  headline: 'Technical Product Analyst · Analista Programador Java · PSPO I',
+  headline: 'Analista Funcional y Técnico Senior · Java · PSPO I',
   location: 'España',
   intro:
     'Más de 20 años de trayectoria profesional, con experiencia reciente en aplicaciones empresariales para la Administración Pública. Combino análisis funcional y técnico, desarrollo backend y orientación a producto.',
@@ -10,14 +10,29 @@ export const portfolio = {
     { phase: 'Base técnica', text: 'Comencé en informática práctica: sistemas, redes, reparación de equipos, soporte y mantenimiento web.' },
     { phase: 'Personas y operaciones', text: 'Durante años evolucioné desde soporte y back office hasta Team Manager, desarrollando liderazgo, comunicación, priorización y gestión de incidencias.' },
     { phase: 'Ingeniería de software', text: 'Reorienté la trayectoria hacia el desarrollo empresarial Java, participando en proyectos críticos de la DGT y posteriormente de la Generalitat de Catalunya.' },
-    { phase: 'Producto', text: 'La experiencia técnica, el análisis funcional y PSPO I convergen ahora en una evolución hacia Technical Product Analyst, Product Owner y liderazgo de producto.' }
+    { phase: 'Producto', text: 'La experiencia técnica y el análisis funcional, reforzados por PSPO I, impulsan mi evolución hacia responsabilidades de Product Owner y gestión de producto.' }
   ],
   value: [
-    'Visión técnica y orientación a producto',
-    'Análisis de impacto y diseño de soluciones',
+    'Análisis funcional y técnico de principio a fin',
+    'Visión de producto reforzada por PSPO I',
     'Experiencia en sistemas críticos de la Administración Pública',
     'Capacidad para conectar negocio, desarrollo y calidad'
   ],
+  featuredProject: {
+    name: 'Portfolio profesional full stack',
+    summary: 'Aplicación personal para presentar mi perfil profesional y ofrecer un canal de contacto, construida como proyecto demostrable y laboratorio de aprendizaje de GitHub Actions.',
+    role: 'Análisis funcional y técnico, diseño de la solución e implementación full stack.',
+    challenge: 'Publicar contenido profesional en una web rápida y sencilla de mantener, con un formulario que persiste los mensajes en un backend propio.',
+    decisions: [
+      { title: 'Frontend estático', detail: 'Astro genera HTML estático para las secciones de perfil, experiencia, formación y certificaciones.' },
+      { title: 'API separada', detail: 'Spring Boot expone endpoints REST para salud, perfil y recepción de mensajes de contacto.' },
+      { title: 'Persistencia controlada', detail: 'Spring Data JPA y PostgreSQL almacenan los mensajes; Flyway versiona el esquema y Bean Validation valida las solicitudes.' },
+      { title: 'Entorno reproducible', detail: 'Docker Compose levanta PostgreSQL en local y la configuración permite ajustar conexión, puerto y orígenes CORS por entorno.' }
+    ],
+    evidence: ['Arquitectura frontend/API', 'Contrato REST y validaciones', 'Persistencia relacional y migraciones', 'Documentación de arquitectura y despliegue'],
+    stack: ['Astro', 'TypeScript', 'Java 21', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docker Compose'],
+    status: 'La aplicación funciona en local y el frontend compila como sitio estático. El despliegue público y los workflows de GitHub Actions están pendientes.'
+  },
   technologies: [
     { category: 'Backend', items: ['Java 7/8', 'Java EE', 'Spring', 'Spring Boot'] },
     { category: 'Persistencia', items: ['JPA', 'Hibernate', 'JDBC'] },
@@ -111,5 +126,5 @@ export const portfolio = {
   ],
   skills: ['Pensamiento analítico', 'Estimación técnica', 'Documentación', 'Resolución de incidencias', 'Trabajo en equipo', 'Mejora continua'],
   objective:
-    'Evolucionar hacia posiciones de Product Owner, Technical Product Owner o liderazgo de producto, aportando una base técnica sólida para conectar negocio y tecnología y maximizar el valor entregado.'
+    'Mi siguiente paso profesional es evolucionar desde el análisis funcional y técnico hacia responsabilidades de Product Owner. Aporto experiencia en proyectos empresariales, una base sólida en desarrollo Java y la certificación PSPO I para conectar las necesidades del negocio con soluciones técnicas que generen valor.'
 };

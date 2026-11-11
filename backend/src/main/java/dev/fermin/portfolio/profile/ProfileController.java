@@ -14,8 +14,8 @@ public class ProfileController {
     public ProfileResponse profile() {
         return new ProfileResponse(
                 "Fermín Bermejo González",
-                "Technical Product Analyst | Analista Programador Java | PSPO I",
-                "Perfil híbrido entre análisis funcional, desarrollo backend y orientación a producto.",
+            "Analista Funcional y Técnico Senior | Java | PSPO I",
+            "Experiencia en análisis funcional y técnico, desarrollo backend y evolución hacia responsabilidades de Product Owner.",
                 List.of("Java", "Spring", "Spring Boot", "Oracle", "PL/SQL", "REST", "Git", "CI/CD", "Maven", "SonarQube"),
                 List.of(new Certification("Professional Scrum Product Owner™ I (PSPO I)", "Scrum.org", "24 julio 2026")));
     }

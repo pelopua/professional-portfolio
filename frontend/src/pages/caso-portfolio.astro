@@ -1,0 +1,179 @@
+---
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Caso de estudio del portfolio profesional full stack: alcance, requisitos, criterios de aceptación, arquitectura y estado de implementación." />
+    <meta name="theme-color" content="#070a10" />
+    <title>Caso de estudio · Portfolio profesional</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href={`${base}#inicio`} aria-label="Volver al inicio">FB<span>.</span></a>
+        <nav aria-label="Navegación principal">
+          <a href={`${base}#proyectos`}>Proyectos</a>
+          <a href={`${base}#experiencia`}>Experiencia</a>
+          <a href={`${base}#contacto`}>Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <header class="container case-header">
+        <p class="eyebrow">Caso de estudio · Proyecto personal · 2026</p>
+        <h1>Portfolio profesional full stack</h1>
+        <p class="case-lede">Diseño y construcción de una presencia profesional que combina contenido accesible, un canal de contacto funcional y una arquitectura preparada para evolucionar.</p>
+        <div class="case-meta">
+          <p><span>Rol</span><strong>Análisis funcional y técnico, diseño e implementación</strong></p>
+          <p><span>Estado</span><strong>Operativo en local · despliegue pendiente</strong></p>
+          <p><span>Objetivo profesional</span><strong>Analista Senior · PSPO I</strong></p>
+        </div>
+      </header>
+
+      <section class="case-section">
+        <div class="container case-section-inner">
+          <h2>Contexto y objetivo</h2>
+          <div class="case-copy">
+            <p>El proyecto responde a dos necesidades: presentar de forma clara una trayectoria profesional híbrida entre análisis, desarrollo y producto; y disponer de un canal propio para recibir consultas profesionales.</p>
+            <p>Además de servir como portfolio, se utiliza como laboratorio práctico para aprender y demostrar progresivamente automatización con GitHub Actions. Esa automatización todavía no está implementada.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container case-section-inner">
+          <h2>Alcance funcional</h2>
+          <div class="case-requirements">
+            <article>
+              <span>RF-01</span>
+              <div><h3>Presentación profesional</h3><p>Mostrar perfil, propuesta de valor, experiencia, tecnologías, certificaciones y formación. Permitir consultar el CV.</p></div>
+            </article>
+            <article>
+              <span>RF-02</span>
+              <div><h3>Consulta de perfil por API</h3><p>Exponer información estructurada del perfil mediante <code>GET /api/v1/profile</code>.</p></div>
+            </article>
+            <article>
+              <span>RF-03</span>
+              <div><h3>Comprobación de salud</h3><p>Ofrecer <code>GET /api/v1/health</code> con estado del servicio y marca temporal.</p></div>
+            </article>
+            <article>
+              <span>RF-04</span>
+              <div><h3>Envío de mensajes</h3><p>Recibir nombre, email y mensaje en <code>POST /api/v1/contact</code>, validar los datos y guardar solicitudes válidas.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container case-section-inner">
+          <h2>Criterios de aceptación</h2>
+          <div class="case-copy">
+            <ul>
+              <li>La página principal presenta las secciones profesionales y el enlace al CV.</li>
+              <li>El endpoint de salud responde con estado <code>UP</code> y el identificador del servicio.</li>
+              <li>El perfil se devuelve como datos JSON con titular, resumen, tecnologías y certificaciones.</li>
+              <li>El formulario requiere nombre, email válido y un mensaje de entre 10 y 3000 caracteres.</li>
+              <li>La API limita nombre a 120 caracteres y email a 200; errores de validación devuelven HTTP 400 con los campos afectados.</li>
+              <li>Una solicitud válida se guarda en PostgreSQL y responde HTTP 201.</li>
+            </ul>
+            <p>El formulario incluye un campo honeypot básico. No sustituye una solución completa contra spam.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container case-section-inner">
+          <h2>Flujo de contacto</h2>
+          <div class="case-flow">
+            <article><span>01</span><h3>Completar</h3><p>La persona introduce nombre, correo y consulta.</p></article>
+            <article><span>02</span><h3>Validar</h3><p>El navegador aplica restricciones básicas y la API valida de nuevo los datos.</p></article>
+            <article><span>03</span><h3>Persistir</h3><p>La API crea el registro en PostgreSQL si la solicitud es válida.</p></article>
+            <article><span>04</span><h3>Confirmar</h3><p>La interfaz informa del resultado y permite volver a enviar tras un error.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container case-section-inner">
+          <h2>Arquitectura y decisiones</h2>
+          <div class="case-decisions">
+            <article><h3>Astro como sitio estático</h3><p>Las páginas informativas se generan como HTML estático; el JavaScript del navegador se reserva principalmente para el formulario.</p></article>
+            <article><h3>API independiente</h3><p>Spring Boot y Java 21 separan la presentación de los endpoints de salud, perfil y contacto.</p></article>
+            <article><h3>Persistencia relacional</h3><p>Spring Data JPA gestiona los mensajes; Flyway versiona el esquema PostgreSQL y Hibernate valida su correspondencia.</p></article>
+            <article><h3>Configuración por entorno</h3><p>Conexión a base de datos, puerto y orígenes CORS se parametrizan mediante variables de entorno.</p></article>
+            <article><h3>Desarrollo local</h3><p>Docker Compose permite levantar PostgreSQL para ejecutar la aplicación localmente.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container case-section-inner">
+          <h2>Validación y estado</h2>
+          <div class="case-copy">
+            <p>El build de Astro genera el sitio estático y la prueba automatizada existente comprueba el endpoint de salud. La cobertura automatizada del flujo de contacto aún debe ampliarse.</p>
+            <p>El frontend y el backend se ejecutan en local. La publicación del backend, la conexión con una base de datos de producción, los workflows de CI/CD y la protección reforzada contra spam siguen pendientes. Antes de recibir tráfico real también debe definirse una política de privacidad.</p>
+            <p class="case-stack"><strong>Stack:</strong> Astro, TypeScript, Java 21, Spring Boot, Spring Data JPA, Bean Validation, PostgreSQL, Flyway, Maven y Docker Compose.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <a href={`${base}#proyectos`}>Volver al portfolio</a>
+        <span class="muted">Fermín Bermejo González · Caso de estudio</span>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .topbar { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(7,10,16,.9); border-bottom:1px solid var(--line); }
+  .nav { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+  .brand { font-weight:950; font-size:1.25rem; text-decoration:none; }
+  .brand span { color:var(--accent); }
+  nav { display:flex; gap:1.1rem; flex-wrap:wrap; justify-content:flex-end; }
+  nav a { color:var(--muted); text-decoration:none; font-size:.9rem; }
+  nav a:hover { color:var(--text); }
+  .case-header { padding-block:5rem 4rem; }
+  .case-header h1 { max-width:850px; margin:.8rem 0 1rem; font-size:3.6rem; line-height:1.04; }
+  .case-lede { max-width:780px; color:var(--muted); font-size:1.2rem; }
+  .case-meta { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2rem; margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--line); }
+  .case-meta p { display:grid; gap:.3rem; margin:0; }
+  .case-meta span, .case-flow article > span, .case-requirements article > span { color:var(--accent); font-size:.8rem; font-weight:800; text-transform:uppercase; }
+  .case-section { border-top:1px solid var(--line); padding:3rem 0; }
+  .case-section-inner { display:grid; grid-template-columns:minmax(180px,.55fr) minmax(0,1.45fr); gap:3rem; }
+  .case-section h2 { margin:0; font-size:1.5rem; line-height:1.25; }
+  .case-copy { color:var(--muted); }
+  .case-copy > :first-child { margin-top:0; }
+  .case-copy li { margin:.6rem 0; }
+  .case-requirements, .case-decisions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 2rem; }
+  .case-requirements article, .case-decisions article { border-top:1px solid var(--line); padding:1rem 0; }
+  .case-requirements article { display:grid; grid-template-columns:54px 1fr; gap:1rem; }
+  .case-requirements h3, .case-decisions h3, .case-flow h3 { margin:0 0 .35rem; font-size:1rem; }
+  .case-requirements p, .case-decisions p, .case-flow p { margin:0; color:var(--muted); }
+  .case-flow { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.5rem; }
+  .case-flow article { border-top:2px solid var(--accent); padding-top:1rem; }
+  .case-flow h3 { margin-top:.8rem; }
+  .case-stack { padding-top:1rem; border-top:1px solid var(--line); }
+  .case-study-link { display:inline-flex; gap:.4rem; margin-top:.2rem; font-weight:750; text-decoration-thickness:1px; text-underline-offset:4px; }
+  .case-study-link:hover { color:var(--accent); }
+  footer { border-top:1px solid var(--line); padding:2rem 0; }
+  .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.9rem; }
+  .footer-inner a { text-decoration:none; }
+  .footer-inner a:hover { color:var(--accent); }
+  @media (max-width:760px) {
+    .case-header { padding-block:3.5rem 2.5rem; }
+    .case-header h1 { font-size:2.5rem; }
+    .case-meta, .case-section-inner, .case-requirements, .case-decisions, .case-flow { grid-template-columns:1fr; gap:1.5rem; }
+    .case-section-inner { gap:1rem; }
+    nav { gap:.7rem; }
+    nav a { font-size:.82rem; }
+  }
+</style>

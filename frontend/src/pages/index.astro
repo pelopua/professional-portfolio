@@ -13,7 +13,7 @@ const cvUrl = `${base}cv/CV_Fermin_Bermejo_Gonzalez.pdf`.replace(/\/+/g, '/');
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Portfolio profesional de Fermín Bermejo González: Technical Product Analyst, Analista Programador Java y PSPO I." />
+    <meta name="description" content="Portfolio profesional de Fermín Bermejo González, Analista Funcional y Técnico Senior con experiencia en Java y certificación PSPO I." />
     <meta name="theme-color" content="#070a10" />
     <title>{portfolio.name} · Portfolio profesional</title>
   </head>
@@ -22,6 +22,7 @@ const cvUrl = `${base}cv/CV_Fermin_Bermejo_Gonzalez.pdf`.replace(/\/+/g, '/');
       <div class="container nav">
         <a class="brand" href="#inicio" aria-label="Ir al inicio">FB<span>.</span></a>
         <nav aria-label="Navegación principal">
+          <a href="#proyectos">Proyectos</a>
           <a href="#experiencia">Experiencia</a>
           <a href="#stack">Stack</a>
           <a href="#certificaciones">Certificaciones</a>
@@ -54,7 +55,7 @@ const cvUrl = `${base}cv/CV_Fermin_Bermejo_Gonzalez.pdf`.replace(/\/+/g, '/');
             />
           </div>
           <div>
-            <p class="identity-role">Technical Product Analyst</p>
+            <p class="identity-role">Analista Funcional y Técnico Senior</p>
             <p class="muted">Java · Spring · Oracle · Product Thinking</p>
           </div>
           <div class="status"><span></span> Portfolio vivo · 2026</div>
@@ -90,6 +91,46 @@ const cvUrl = `${base}cv/CV_Fermin_Bermejo_Gonzalez.pdf`.replace(/\/+/g, '/');
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section id="proyectos" class="section">
+        <div class="container">
+          <p class="eyebrow">Caso de estudio · Proyecto personal</p>
+          <div class="project-heading">
+            <div>
+              <h2>{portfolio.featuredProject.name}</h2>
+              <p class="project-summary">{portfolio.featuredProject.summary}</p>
+            </div>
+            <div class="project-role">
+              <span class="eyebrow">Mi papel</span>
+              <p>{portfolio.featuredProject.role}</p>
+            </div>
+          </div>
+          <div class="project-details">
+            <article>
+              <h3>Reto</h3>
+              <p>{portfolio.featuredProject.challenge}</p>
+            </article>
+            {portfolio.featuredProject.decisions.map((decision) => (
+              <article>
+                <h3>{decision.title}</h3>
+                <p>{decision.detail}</p>
+              </article>
+            ))}
+          </div>
+          <div class="project-evidence">
+            <div>
+              <h3>Qué demuestra</h3>
+              <ul>{portfolio.featuredProject.evidence.map((item) => <li>{item}</li>)}</ul>
+            </div>
+            <div>
+              <h3>Tecnologías</h3>
+              <div class="pills">{portfolio.featuredProject.stack.map((item) => <span class="pill">{item}</span>)}</div>
+            </div>
+          </div>
+          <p class="project-status"><strong>Estado:</strong> {portfolio.featuredProject.status}</p>
+          <a class="case-study-link" href={`${base}caso-portfolio/`}>Leer el caso de estudio completo <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
@@ -164,7 +205,7 @@ const cvUrl = `${base}cv/CV_Fermin_Bermejo_Gonzalez.pdf`.replace(/\/+/g, '/');
         <div class="container objective">
           <div>
             <p class="eyebrow">Siguiente etapa</p>
-            <h2>Technical Product Owner con base de ingeniería.</h2>
+            <h2>De Analista Senior a Product Owner.</h2>
           </div>
           <p>{portfolio.objective}</p>
         </div>
@@ -272,6 +313,20 @@ const cvUrl = `${base}cv/CV_Fermin_Bermejo_Gonzalez.pdf`.replace(/\/+/g, '/');
       .value-grid { grid-template-columns:repeat(4,1fr); }
       .value-card span { color:var(--muted); font-size:.78rem; }
       .value-card p { font-size:1.05rem; font-weight:700; margin:2rem 0 0; }
+      .project-heading { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(230px,.6fr); gap:3rem; align-items:end; }
+      .project-heading h2 { margin-bottom:.8rem; }
+      .project-summary { max-width:720px; color:var(--muted); font-size:1.1rem; }
+      .project-role { border-left:2px solid var(--accent); padding-left:1rem; }
+      .project-role .eyebrow { margin:0; }
+      .project-role p { margin:.4rem 0 0; font-weight:700; }
+      .project-details { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 3rem; margin-top:2rem; }
+      .project-details article { border-top:1px solid var(--line); padding:1.2rem 0; }
+      .project-details h3, .project-evidence h3 { margin:0 0 .4rem; font-size:1rem; }
+      .project-details p { margin:0; color:var(--muted); }
+      .project-evidence { display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-top:1rem; }
+      .project-evidence ul { margin:.5rem 0 0; padding-left:1.2rem; color:var(--muted); }
+      .project-status { border-top:1px solid var(--line); padding-top:1rem; margin-top:2rem; color:var(--muted); font-size:.92rem; }
+      .project-status strong { color:var(--text); }
       .timeline { display:grid; }
       .timeline-item { display:grid; grid-template-columns:220px minmax(0,1fr); gap:2rem; padding:2.1rem 0; border-top:1px solid var(--line); }
       .timeline-content h3 { margin:.2rem 0; font-size:1.55rem; }
@@ -306,7 +361,7 @@ const cvUrl = `${base}cv/CV_Fermin_Bermejo_Gonzalez.pdf`.replace(/\/+/g, '/');
         .identity-card { min-height:260px; }
         .value-grid, .stack-grid { grid-template-columns:repeat(2,1fr); }
         .timeline-item { grid-template-columns:150px minmax(0,1fr); }
-        .contact-layout, .objective, .story-layout { grid-template-columns:1fr; gap:2rem; }
+        .contact-layout, .objective, .story-layout, .project-heading, .project-details, .project-evidence { grid-template-columns:1fr; gap:2rem; }
       }
       @media (max-width:640px) {
         nav { display:none; }
