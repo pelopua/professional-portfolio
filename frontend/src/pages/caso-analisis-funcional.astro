@@ -1,0 +1,200 @@
+---
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Ejercicio ficticio de análisis funcional: requisitos y reglas para gestionar citas de atención municipal." />
+    <meta name="theme-color" content="#070a10" />
+    <title>Ejercicio de análisis funcional · Portfolio</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href={`${base}#inicio`} aria-label="Volver al inicio">FB<span>.</span></a>
+        <nav aria-label="Navegación principal">
+          <a href={`${base}#proyectos`}>Proyectos</a>
+          <a href={`${base}#experiencia`}>Experiencia</a>
+          <a href={`${base}#contacto`}>Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <header class="container analysis-header">
+        <p class="eyebrow">Ejercicio de análisis funcional · Escenario ficticio</p>
+        <h1>Gestión de citas para un servicio municipal</h1>
+        <p class="analysis-lede">Ejemplo de cómo partir de una necesidad, acotar un alcance inicial y definir requisitos verificables. No describe un proyecto real ni una solución implementada.</p>
+        <div class="analysis-meta">
+          <p><span>Enfoque</span><strong>Descubrimiento y definición funcional</strong></p>
+          <p><span>Usuarios</span><strong>Ciudadanía y personal de atención</strong></p>
+          <p><span>Estado</span><strong>Propuesta funcional · sin implementación</strong></p>
+        </div>
+      </header>
+
+      <section class="analysis-section">
+        <div class="container analysis-layout">
+          <h2>Problema y objetivo</h2>
+          <div class="analysis-copy">
+            <p>En este escenario ficticio, una oficina municipal recibe solicitudes de atención por teléfono y presencialmente. La disponibilidad de citas no siempre es clara y parte del personal dedica tiempo a coordinar cambios y cancelaciones.</p>
+            <p>El objetivo del MVP propuesto es permitir que una persona consulte disponibilidad y solicite una cita, mientras el personal puede revisar las reservas desde una vista interna.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="analysis-section">
+        <div class="container analysis-layout">
+          <h2>Alcance del MVP</h2>
+          <div class="scope-columns">
+            <article>
+              <h3>Incluido</h3>
+              <ul>
+                <li>Consultar servicios y franjas disponibles.</li>
+                <li>Solicitar una cita con datos de contacto mínimos.</li>
+                <li>Mostrar confirmación y un identificador de reserva.</li>
+                <li>Permitir al personal consultar las citas registradas.</li>
+              </ul>
+            </article>
+            <article>
+              <h3>Fuera de alcance inicial</h3>
+              <ul>
+                <li>Pago, videollamada o gestión de expedientes.</li>
+                <li>Integración con identidad digital o calendarios externos.</li>
+                <li>Reprogramación y cancelación autoservicio.</li>
+                <li>Definir proveedor tecnológico, plazos o métricas de impacto sin descubrimiento adicional.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="analysis-section">
+        <div class="container analysis-layout">
+          <h2>Historias y aceptación</h2>
+          <div class="analysis-stories">
+            <article>
+              <span>US-01 · Consultar disponibilidad</span>
+              <h3>Como residente, quiero consultar horarios por servicio para elegir cuándo acudir.</h3>
+              <ul>
+                <li>Dado un servicio activo, cuando consulto una fecha, entonces veo solo franjas con capacidad disponible.</li>
+                <li>Dado que no hay disponibilidad, cuando consulto el servicio, entonces se informa claramente y puedo probar otra fecha.</li>
+              </ul>
+            </article>
+            <article>
+              <span>US-02 · Reservar cita</span>
+              <h3>Como residente, quiero reservar una franja disponible y recibir confirmación.</h3>
+              <ul>
+                <li>Dado que una franja tiene plazas, cuando envío los datos obligatorios válidos, entonces se registra una reserva y recibo un identificador.</li>
+                <li>Dado que otra persona ocupa la última plaza antes de confirmar, cuando intento reservar, entonces no se crea una reserva duplicada y se me informa para elegir otra franja.</li>
+              </ul>
+            </article>
+            <article>
+              <span>US-03 · Consultar agenda</span>
+              <h3>Como empleado municipal, quiero consultar las reservas del servicio para preparar la atención.</h3>
+              <ul>
+                <li>Dado que tengo acceso autorizado, cuando filtro por fecha y servicio, entonces veo las citas correspondientes.</li>
+                <li>Dado que no tengo autorización, cuando intento acceder a la agenda, entonces el sistema deniega el acceso.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="analysis-section">
+        <div class="container analysis-layout">
+          <h2>Reglas de negocio propuestas</h2>
+          <div class="analysis-copy">
+            <ul>
+              <li>Una reserva debe referirse a un servicio y una franja publicados.</li>
+              <li>La disponibilidad no puede ser negativa ni superarse por reservas concurrentes.</li>
+              <li>Una solicitud requiere los datos mínimos definidos para contactar con la persona.</li>
+              <li>La agenda interna solo está disponible para personal autenticado y autorizado.</li>
+              <li>Los datos personales se limitan a lo necesario para gestionar la cita y se sujetan a una política de conservación por definir.</li>
+            </ul>
+            <p>Son hipótesis de trabajo para ilustrar el análisis; deben validarse con responsables del servicio, personal de atención y requisitos normativos aplicables.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="analysis-section">
+        <div class="container analysis-layout">
+          <h2>Priorización inicial</h2>
+          <div class="priority-list">
+            <article><span>Must</span><p>Consultar disponibilidad, crear reserva sin exceder capacidad y confirmar el resultado.</p></article>
+            <article><span>Must</span><p>Proteger la agenda interna mediante autenticación y autorización.</p></article>
+            <article><span>Should</span><p>Filtrar agenda por fecha y servicio y ofrecer una alternativa cuando no haya plazas.</p></article>
+            <article><span>Could</span><p>Incorporar recordatorios y autoservicio de cambios tras definir políticas y canales.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="analysis-section">
+        <div class="container analysis-layout">
+          <h2>Preguntas abiertas</h2>
+          <div class="analysis-copy">
+            <ul>
+              <li>¿Qué servicios, horarios, duración y capacidad se ofrecerán?</li>
+              <li>¿Qué datos son estrictamente necesarios y cuál es la base legal del tratamiento?</li>
+              <li>¿Cómo se verificará la identidad del personal y quién administrará permisos?</li>
+              <li>¿Qué reglas aplican a cancelaciones, ausencias, reservas duplicadas y accesibilidad?</li>
+              <li>¿Qué sistemas municipales existentes deben integrarse?</li>
+            </ul>
+            <p>Estas respuestas condicionan el diseño, la estimación y los criterios finales; por eso no se asumen como decisiones cerradas en este ejercicio.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <a href={`${base}#proyectos`}>Volver al portfolio</a>
+        <span class="muted">Ejercicio ficticio · No corresponde a un cliente real</span>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .topbar { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(7,10,16,.9); border-bottom:1px solid var(--line); }
+  .nav { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+  .brand { font-weight:950; font-size:1.25rem; text-decoration:none; }
+  .brand span { color:var(--accent); }
+  nav { display:flex; gap:1.1rem; flex-wrap:wrap; justify-content:flex-end; }
+  nav a { color:var(--muted); text-decoration:none; font-size:.9rem; }
+  nav a:hover { color:var(--text); }
+  .analysis-header { padding-block:5rem 4rem; }
+  .analysis-header h1 { max-width:900px; margin:.8rem 0 1rem; font-size:3.4rem; line-height:1.05; }
+  .analysis-lede { max-width:780px; color:var(--muted); font-size:1.15rem; }
+  .analysis-meta { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2rem; margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--line); }
+  .analysis-meta p { display:grid; gap:.3rem; margin:0; }
+  .analysis-meta span, .analysis-stories article > span, .priority-list article > span { color:var(--accent); font-size:.8rem; font-weight:800; text-transform:uppercase; }
+  .analysis-section { border-top:1px solid var(--line); padding:3rem 0; }
+  .analysis-layout { display:grid; grid-template-columns:minmax(180px,.55fr) minmax(0,1.45fr); gap:3rem; }
+  .analysis-layout h2 { margin:0; font-size:1.5rem; line-height:1.25; }
+  .analysis-copy { color:var(--muted); }
+  .analysis-copy > :first-child { margin-top:0; }
+  .analysis-copy li { margin:.6rem 0; }
+  .scope-columns, .priority-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 2rem; }
+  .scope-columns article, .analysis-stories article, .priority-list article { border-top:1px solid var(--line); padding:1rem 0; }
+  .scope-columns h3, .analysis-stories h3 { margin:.2rem 0 .4rem; font-size:1rem; }
+  .scope-columns ul, .analysis-stories ul { color:var(--muted); padding-left:1.2rem; }
+  .scope-columns li, .analysis-stories li { margin:.45rem 0; }
+  .analysis-stories article > span { display:block; }
+  .analysis-stories h3 { margin-top:.5rem; font-size:1.05rem; }
+  .priority-list article p { margin:.35rem 0 0; color:var(--muted); }
+  footer { border-top:1px solid var(--line); padding:2rem 0; }
+  .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.9rem; }
+  .footer-inner a { text-decoration:none; }
+  @media (max-width:760px) {
+    .analysis-header { padding-block:3.5rem 2.5rem; }
+    .analysis-header h1 { font-size:2.5rem; }
+    .analysis-meta, .analysis-layout, .scope-columns, .analysis-stories, .priority-list { grid-template-columns:1fr; gap:1.5rem; }
+    .analysis-layout { gap:1rem; }
+    nav { gap:.7rem; }
+    nav a { font-size:.82rem; }
+  }
+</style>

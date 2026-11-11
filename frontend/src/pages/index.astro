@@ -130,7 +130,23 @@ const cvUrl = `${base}cv/CV_Fermin_Bermejo_Gonzalez.pdf`.replace(/\/+/g, '/');
             </div>
           </div>
           <p class="project-status"><strong>Estado:</strong> {portfolio.featuredProject.status}</p>
-          <a class="case-study-link" href={`${base}caso-portfolio/`}>Leer el caso de estudio completo <span aria-hidden="true">↗</span></a>
+          <div class="project-actions">
+            <a class="case-study-link" href={`${base}caso-portfolio/`}>Leer el caso de estudio completo <span aria-hidden="true">↗</span></a>
+            <a class="case-study-link" href={portfolio.githubUrl} target="_blank" rel="noreferrer">Ver código en GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container practice-project">
+          <div>
+            <p class="eyebrow">Ejercicio de análisis · Escenario ficticio</p>
+            <h2>Gestión de citas para un servicio municipal</h2>
+          </div>
+          <div>
+            <p class="muted">Un ejercicio práctico para mostrar cómo delimito un problema, identifico reglas de negocio y convierto necesidades en requisitos priorizados y criterios de aceptación.</p>
+            <a class="case-study-link" href={`${base}caso-analisis-funcional/`}>Explorar el análisis funcional <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
       </section>
 
@@ -217,6 +233,7 @@ const cvUrl = `${base}cv/CV_Fermin_Bermejo_Gonzalez.pdf`.replace(/\/+/g, '/');
             <p class="eyebrow">Contacto</p>
             <h2>¿Tienes un reto de producto o tecnología?</h2>
             <p class="muted">Responderé a su consulta a la mayor brevedad posible, gracias.</p>
+            <p class="contact-privacy">Los datos se utilizarán únicamente para responder a tu mensaje. Consulta la <a href={`${base}privacidad/`}>información de privacidad</a>.</p>
           </div>
           <form id="contact-form" class="contact-form" data-api-base-url={apiBaseUrl}>
             <label>
@@ -327,6 +344,10 @@ const cvUrl = `${base}cv/CV_Fermin_Bermejo_Gonzalez.pdf`.replace(/\/+/g, '/');
       .project-evidence ul { margin:.5rem 0 0; padding-left:1.2rem; color:var(--muted); }
       .project-status { border-top:1px solid var(--line); padding-top:1rem; margin-top:2rem; color:var(--muted); font-size:.92rem; }
       .project-status strong { color:var(--text); }
+      .project-actions { display:flex; flex-wrap:wrap; gap:1.5rem; }
+      .practice-project { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:end; }
+      .practice-project h2 { max-width:620px; }
+      .practice-project > div:last-child > p { margin-top:0; }
       .timeline { display:grid; }
       .timeline-item { display:grid; grid-template-columns:220px minmax(0,1fr); gap:2rem; padding:2.1rem 0; border-top:1px solid var(--line); }
       .timeline-content h3 { margin:.2rem 0; font-size:1.55rem; }
@@ -348,6 +369,9 @@ const cvUrl = `${base}cv/CV_Fermin_Bermejo_Gonzalez.pdf`.replace(/\/+/g, '/');
       .contact-section { background:rgba(255,255,255,.018); }
       .contact-layout { display:grid; grid-template-columns:.85fr 1.15fr; gap:5rem; }
       .contact-form { display:grid; gap:1rem; }
+      .contact-privacy { max-width:440px; font-size:.9rem; color:var(--muted); }
+      .contact-privacy a { color:var(--text); text-underline-offset:3px; }
+      .contact-privacy a:hover { color:var(--accent); }
       .contact-form label { display:grid; gap:.45rem; font-size:.88rem; font-weight:700; color:#d8e1ed; }
       input, textarea { width:100%; border:1px solid var(--line); border-radius:.75rem; background:#090e16; color:var(--text); padding:.8rem .9rem; font:inherit; font-size:16px; }
       input:focus, textarea:focus { outline:2px solid var(--accent-2); outline-offset:2px; }
@@ -361,7 +385,7 @@ const cvUrl = `${base}cv/CV_Fermin_Bermejo_Gonzalez.pdf`.replace(/\/+/g, '/');
         .identity-card { min-height:260px; }
         .value-grid, .stack-grid { grid-template-columns:repeat(2,1fr); }
         .timeline-item { grid-template-columns:150px minmax(0,1fr); }
-        .contact-layout, .objective, .story-layout, .project-heading, .project-details, .project-evidence { grid-template-columns:1fr; gap:2rem; }
+        .contact-layout, .objective, .story-layout, .project-heading, .project-details, .project-evidence, .practice-project { grid-template-columns:1fr; gap:2rem; }
       }
       @media (max-width:640px) {
         nav { display:none; }

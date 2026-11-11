@@ -2,6 +2,7 @@ export const portfolio = {
   name: 'Fermín Bermejo González',
   initials: 'FB',
   linkedinUrl: 'https://www.linkedin.com/in/ferm%C3%ADn-bermejo-gonz%C3%A1lez-a4891a66',
+  githubUrl: 'https://github.com/pelopua/professional-portfolio',
   headline: 'Analista Funcional y Técnico Senior · Java · PSPO I',
   location: 'España',
   intro:
@@ -31,7 +32,7 @@ export const portfolio = {
     ],
     evidence: ['Arquitectura frontend/API', 'Contrato REST y validaciones', 'Persistencia relacional y migraciones', 'Documentación de arquitectura y despliegue'],
     stack: ['Astro', 'TypeScript', 'Java 21', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docker Compose'],
-    status: 'La aplicación funciona en local y el frontend compila como sitio estático. El despliegue público y los workflows de GitHub Actions están pendientes.'
+    status: 'La aplicación funciona en local; GitHub Actions valida el build de Astro y las pruebas de Maven. El despliegue público sigue pendiente.'
   },
   technologies: [
     { category: 'Backend', items: ['Java 7/8', 'Java EE', 'Spring', 'Spring Boot'] },

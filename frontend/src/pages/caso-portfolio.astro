@@ -41,7 +41,7 @@ const base = import.meta.env.BASE_URL;
           <h2>Contexto y objetivo</h2>
           <div class="case-copy">
             <p>El proyecto responde a dos necesidades: presentar de forma clara una trayectoria profesional híbrida entre análisis, desarrollo y producto; y disponer de un canal propio para recibir consultas profesionales.</p>
-            <p>Además de servir como portfolio, se utiliza como laboratorio práctico para aprender y demostrar progresivamente automatización con GitHub Actions. Esa automatización todavía no está implementada.</p>
+            <p>Además de servir como portfolio, se utiliza como laboratorio práctico para aprender y demostrar automatización con GitHub Actions. Actualmente hay workflows de CI para validar el frontend y el backend; el despliegue automático aún no está configurado.</p>
           </div>
         </div>
       </section>
@@ -89,6 +89,37 @@ const base = import.meta.env.BASE_URL;
 
       <section class="case-section">
         <div class="container case-section-inner">
+          <h2>Historias de usuario</h2>
+          <div class="case-stories">
+            <article>
+              <span>US-01 · Evaluación profesional</span>
+              <h3>Como recruiter, quiero entender rápidamente el perfil y consultar su trayectoria.</h3>
+              <ul>
+                <li>Dado que accedo a la página principal, cuando la recorro, entonces encuentro perfil, experiencia, formación y certificaciones.</li>
+                <li>Dado que quiero revisar el detalle, cuando selecciono el CV, entonces se abre el documento disponible.</li>
+              </ul>
+            </article>
+            <article>
+              <span>US-02 · Contacto</span>
+              <h3>Como visitante, quiero enviar una consulta para iniciar una conversación profesional.</h3>
+              <ul>
+                <li>Dado que faltan datos obligatorios o el email no es válido, cuando intento enviar, entonces recibo errores de validación y no se crea el mensaje.</li>
+                <li>Dado que los datos son válidos, cuando envío la consulta, entonces la API la persiste y la interfaz comunica el resultado.</li>
+              </ul>
+            </article>
+            <article>
+              <span>US-03 · Mantenimiento del contenido</span>
+              <h3>Como propietario del portfolio, quiero mantener el contenido profesional separado de la presentación.</h3>
+              <ul>
+                <li>Dado que actualizo los datos en el módulo de contenido, cuando genero el sitio, entonces las secciones reflejan esos datos sin duplicar el contenido en el marcado.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container case-section-inner">
           <h2>Flujo de contacto</h2>
           <div class="case-flow">
             <article><span>01</span><h3>Completar</h3><p>La persona introduce nombre, correo y consulta.</p></article>
@@ -117,7 +148,7 @@ const base = import.meta.env.BASE_URL;
           <h2>Validación y estado</h2>
           <div class="case-copy">
             <p>El build de Astro genera el sitio estático y la prueba automatizada existente comprueba el endpoint de salud. La cobertura automatizada del flujo de contacto aún debe ampliarse.</p>
-            <p>El frontend y el backend se ejecutan en local. La publicación del backend, la conexión con una base de datos de producción, los workflows de CI/CD y la protección reforzada contra spam siguen pendientes. Antes de recibir tráfico real también debe definirse una política de privacidad.</p>
+            <p>El frontend y el backend se ejecutan en local. GitHub Actions ejecuta CI para el build de Astro y las pruebas de Maven. La publicación del backend, la conexión con una base de datos de producción, el despliegue automatizado y la protección reforzada contra spam siguen pendientes. Antes de recibir tráfico real también deben completarse y revisarse los datos de privacidad.</p>
             <p class="case-stack"><strong>Stack:</strong> Astro, TypeScript, Java 21, Spring Boot, Spring Data JPA, Bean Validation, PostgreSQL, Flyway, Maven y Docker Compose.</p>
           </div>
         </div>
@@ -154,12 +185,19 @@ const base = import.meta.env.BASE_URL;
   .case-copy > :first-child { margin-top:0; }
   .case-copy li { margin:.6rem 0; }
   .case-requirements, .case-decisions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 2rem; }
+  .case-stories { display:grid; gap:1.5rem; }
+  .case-stories article { border-top:1px solid var(--line); padding-top:1rem; }
+  .case-stories article > span { color:var(--accent); font-size:.8rem; font-weight:800; text-transform:uppercase; }
+  .case-stories h3 { max-width:760px; margin:.5rem 0; font-size:1.1rem; }
+  .case-stories ul { margin:.5rem 0; padding-left:1.2rem; color:var(--muted); }
+  .case-stories li { margin:.4rem 0; }
   .case-requirements article, .case-decisions article { border-top:1px solid var(--line); padding:1rem 0; }
   .case-requirements article { display:grid; grid-template-columns:54px 1fr; gap:1rem; }
   .case-requirements h3, .case-decisions h3, .case-flow h3 { margin:0 0 .35rem; font-size:1rem; }
   .case-requirements p, .case-decisions p, .case-flow p { margin:0; color:var(--muted); }
   .case-flow { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.5rem; }
-  .case-flow article { border-top:2px solid var(--accent); padding-top:1rem; }
+  .case-flow article { position:relative; border-top:2px solid var(--accent); padding-top:1rem; }
+  .case-flow article:not(:last-child)::after { content:'→'; position:absolute; top:.75rem; right:-1.25rem; color:var(--accent); font-weight:800; }
   .case-flow h3 { margin-top:.8rem; }
   .case-stack { padding-top:1rem; border-top:1px solid var(--line); }
   .case-study-link { display:inline-flex; gap:.4rem; margin-top:.2rem; font-weight:750; text-decoration-thickness:1px; text-underline-offset:4px; }
@@ -173,6 +211,7 @@ const base = import.meta.env.BASE_URL;
     .case-header h1 { font-size:2.5rem; }
     .case-meta, .case-section-inner, .case-requirements, .case-decisions, .case-flow { grid-template-columns:1fr; gap:1.5rem; }
     .case-section-inner { gap:1rem; }
+    .case-flow article:not(:last-child)::after { content:'↓'; top:auto; right:.5rem; bottom:-1.35rem; }
     nav { gap:.7rem; }
     nav a { font-size:.82rem; }
   }

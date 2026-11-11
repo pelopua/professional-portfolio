@@ -1,0 +1,94 @@
+---
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Información sobre el uso de los datos enviados mediante el formulario de contacto del portfolio." />
+    <meta name="theme-color" content="#070a10" />
+    <title>Privacidad · Portfolio profesional</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href={`${base}#inicio`} aria-label="Volver al inicio">FB<span>.</span></a>
+        <nav aria-label="Navegación principal">
+          <a href={`${base}#proyectos`}>Proyectos</a>
+          <a href={`${base}#contacto`}>Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <header class="container privacy-header">
+        <p class="eyebrow">Información de privacidad</p>
+        <h1>Tratamiento de los datos de contacto</h1>
+        <p class="privacy-notice"><strong>Estado:</strong> información preliminar para desarrollo local. Antes de publicar el formulario deben completarse los datos de contacto legal y los proveedores efectivos de alojamiento y base de datos.</p>
+      </header>
+
+      <div class="container privacy-content">
+        <section>
+          <h2>Responsable</h2>
+          <p>Responsable indicado para este proyecto: Fermín Bermejo González. Para una publicación real debe añadirse aquí un medio de contacto directo y la información identificativa que resulte legalmente exigible.</p>
+        </section>
+        <section>
+          <h2>Finalidad y datos tratados</h2>
+          <p>El formulario solicita nombre, dirección de correo electrónico y mensaje para poder responder a consultas profesionales. No incluyas datos especialmente sensibles ni información que no sea necesaria para la consulta.</p>
+        </section>
+        <section>
+          <h2>Base y conservación</h2>
+          <p>La base jurídica debe determinarse según el motivo de cada consulta. Puede ser la adopción de medidas precontractuales solicitadas por la persona o el interés legítimo en atender comunicaciones profesionales, según corresponda. Los mensajes se conservarán durante el tiempo necesario para gestionar y responder la consulta y, después, durante los plazos que resulten aplicables.</p>
+        </section>
+        <section>
+          <h2>Destinatarios y alojamiento</h2>
+          <p>En el entorno local, la API guarda los mensajes en la base de datos PostgreSQL del proyecto. Para producción se deberán identificar los proveedores concretos de alojamiento de la API y de la base de datos, revisar sus condiciones y documentar, antes de activar el formulario, cualquier transferencia internacional que pudiera producirse.</p>
+        </section>
+        <section>
+          <h2>Derechos</h2>
+          <p>Las personas pueden solicitar acceso, rectificación, supresión, oposición, limitación del tratamiento y, cuando proceda, portabilidad, además de reclamar ante la Agencia Española de Protección de Datos. Para ejercer estos derechos en una publicación real deberá facilitarse un canal de contacto directo del responsable.</p>
+        </section>
+        <section>
+          <h2>Medidas y límites</h2>
+          <p>La API valida los campos y el formulario incluye un honeypot básico. Esto no equivale a protección antispam completa. Antes de aceptar tráfico real se deben incorporar controles de abuso adecuados, definir la política de conservación y completar la revisión legal y de seguridad.</p>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <a href={`${base}#contacto`}>Volver al contacto</a>
+        <span class="muted">Fermín Bermejo González · Privacidad</span>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .topbar { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(7,10,16,.9); border-bottom:1px solid var(--line); }
+  .nav { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+  .brand { font-weight:950; font-size:1.25rem; text-decoration:none; }
+  .brand span { color:var(--accent); }
+  nav { display:flex; gap:1.1rem; flex-wrap:wrap; justify-content:flex-end; }
+  nav a { color:var(--muted); text-decoration:none; font-size:.9rem; }
+  .privacy-header { padding-block:5rem 3rem; }
+  .privacy-header h1 { max-width:820px; margin:.8rem 0 1.5rem; font-size:3rem; line-height:1.08; }
+  .privacy-notice { max-width:820px; border-left:3px solid var(--accent); padding:1rem 1.2rem; background:rgba(110,231,199,.06); color:var(--muted); }
+  .privacy-notice strong { color:var(--text); }
+  .privacy-content { max-width:900px; padding-bottom:4rem; }
+  .privacy-content section { border-top:1px solid var(--line); padding:1.5rem 0; }
+  .privacy-content h2 { margin:0 0 .6rem; font-size:1.2rem; }
+  .privacy-content p { margin:0; color:var(--muted); }
+  footer { border-top:1px solid var(--line); padding:2rem 0; }
+  .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.9rem; }
+  .footer-inner a { text-decoration:none; }
+  @media (max-width:760px) {
+    .privacy-header { padding-block:3.5rem 2rem; }
+    .privacy-header h1 { font-size:2.3rem; }
+    nav { gap:.7rem; }
+    nav a { font-size:.82rem; }
+  }
+</style>

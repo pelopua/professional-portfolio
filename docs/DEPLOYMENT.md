@@ -15,15 +15,18 @@ git push -u origin main
 
 ## Fase 2 — GitHub Actions / GH-200
 
-La carpeta `.github/workflows` está vacía intencionadamente. Los primeros laboratorios crearán:
+Ya están implementados workflows de integración continua en `.github/workflows`:
 
-1. `backend-ci.yml`: Java 21 + Maven + tests + cache.
-2. `frontend-ci.yml`: Node + npm + build Astro.
-3. Matrices de Java/OS.
-4. Artifacts.
-5. Reusable workflows y composite actions.
-6. Permissions, secrets, environments y OIDC.
-7. Workflow de deployment.
+- `backend-ci.yml`: Java 21 + Maven `verify`.
+- `frontend-ci.yml`: Node.js 22 + `npm ci` + build de Astro.
+
+Se ejecutan en push y pull request a `main` cuando cambian los archivos del módulo correspondiente. Los siguientes laboratorios pueden ampliar esta base con:
+
+1. Matrices de Java/OS.
+2. Artifacts.
+3. Reusable workflows y composite actions.
+4. Environments y OIDC según el proveedor elegido.
+5. Workflow de deployment.
 
 ## Fase 3 — Publicar frontend
 

@@ -7,7 +7,7 @@ Portfolio profesional full stack preparado como proyecto de laboratorio para Git
 - Backend: Java 21, Spring Boot 4.1.1, Spring MVC, Bean Validation, Spring Data JPA, Flyway, PostgreSQL.
 - Frontend: Astro 7.2, TypeScript, HTML y CSS.
 - Desarrollo local: Docker Compose para PostgreSQL.
-- CI/CD: la carpeta `.github/workflows` se deja sin workflows funcionales a propósito para construirlos durante la preparación de GH-200.
+- CI: GitHub Actions valida el backend con Maven y el frontend con Astro en cada push o pull request que afecte a sus archivos. El despliegue automático sigue pendiente y será parte de los laboratorios GH-200.
 
 ## Estructura
 
